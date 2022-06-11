@@ -1,60 +1,58 @@
-let idinero = prompt("Ingrese dinero a depositar");
-let dinero = parseInt(idinero);
+// Funciones:
+const Dinero = () => {
+  let cantDinero = Number(prompt("¿Cuántas operaciones deseas hacer?"));
+  for (i = 1; i <= cantDinero; i++) {
+    let aporte = Number(prompt(`Importe N° ${i}`));
+    sumarIngresos = sumarIngresos + aporte;
+  }
+  alert(`Total ingreso ${sumarIngresos}`);
+};
 
-while (isNaN(dinero)){
-    alert("Por favor, ingrese un número, no un texto");
+const Gastos = () => {
+  let cantGastos = Number(prompt("¿Cuántas operaciones deseas hacer?"));
+  for (i = 1; i <= cantGastos; i++) {
+    let gasto = Number(prompt(`Gasto N° ${i}`));
+    sumarGasto = sumarGasto + gasto;
+  }
+  alert(`total gasto ${sumarGasto}`);
+};
 
-    idinero = prompt("Ingrese dinero a depositar");
-    dinero = parseInt(idinero);
-}
+const restar = (num1, num2) => {
+  return Number(num1) - Number(num2);
+};
 
-let consulta = prompt(" Ingrese 1 para calcular el interés por meses o 2 por años ");
+const sumar = (num1, num2) => {
+  return num1 + " " + num2;
+};
 
+// Variables:
+let sumarGasto = 0;
+let sumarIngresos = 0;
+let opcion;
 
-while (consulta !=1 || consulta !=2 ){
-
-    if (consulta == 1){
-        let imeses = prompt ("¿Cúantos meses desea usted ingresar el dinero?");
-        let meses = parseInt(imeses);
-            while (isNaN(meses)){
-                alert("Por favor, ingrese un número, no un texto");
-                imeses = prompt("¿Cúantos meses desea usted ingresar el dinero?");
-                meses = parseInt(imeses);
-            }
-            let potenciaMeses = Math.pow(1.41,meses/12);
-            var interes = dinero * potenciaMeses;
-            alert("Su dinero sería $" + interes)
-
-        break
+// Simulación:
+alert("Bienvenidos a Info Ahorro");
+let nombre = prompt("Ingrese su nombre");
+let apellido = prompt("Ingrese su apellido");
+info = sumar(nombre, apellido);
+alert(`Hola, ${info} ¿Que operación deseas hacer?`);
+do {
+  opcion = Number(prompt(`1: Ingresar Dinero, 2: Ingresar Gasto, 3: Nada`));
+  switch (opcion) {
+    case 1: {
+      Dinero();
+      let resultado = restar(sumarIngresos, sumarGasto);
+      alert(`Saldo actual ${resultado}`);
+      break;
     }
-
-    if (consulta == 2){
-        let ianios = prompt ("¿Cúantos años desea usted ingresar el dinero?");
-        let anios = parseInt(ianios);
-            while (isNaN(anios)){
-                alert("Por favor, ingrese un número, no un texto");
-                ianios = prompt("¿Cúantos años desea usted ingresar el dinero?");
-                anios = parseInt(ianios);
-            }
-            
-                for(let i=0; i<=anios; i++){
-                    switch(i){
-                        case 0:
-                        alert ("su dinero inicial es $" + dinero);
-                    } 
-                let potenciaAnios = Math.pow(1.41,i);
-                var interes = dinero * potenciaAnios;
-                    if (i != 0){
-                    alert("Su dinero el año " + i + " sería $" + interes)
-                    }
-            }
-
-        break
+    case 2: {
+      Gastos();
+      let resultado = restar(sumarIngresos, sumarGasto);
+      alert(`Saldo actual ${resultado}`);
+      break;
     }
-
-    else {
-        let iconsulta = prompt ("Por favor, ingrese el numero 1 para meses o 2 para años");
-        consulta = parseInt (iconsulta);
-        /* Si lo ponia de otra forma NO FUNCIONABA */
+    case 3: {
+      alert("Adios!");
     }
-}
+  }
+} while (opcion !== 3);
