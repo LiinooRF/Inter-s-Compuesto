@@ -1,30 +1,58 @@
-let user = prompt("¡Crea un usuario!");
-alert("¡Bienvenido " + user + "! ");
-let password = prompt("¡Es hora de crear una contraseña!");
-alert("Usuario creado con éxito. ¿Deseas iniciar sesión?");
-let usuario1 = prompt("¿Cuál es tu usuario?");
-let password1 = prompt("¿Cuál es tu contraseña");
-let intentos = 2;
-while((usuario1 && password1 != password && user)) {
-    intentos--;
-    alert("¡Contraseña o usuario erroneo! Te quedan " + intentos + " intentos." );
-    usuario1 = parseInt(prompt("¿Cuál es tu usuario?"));
-    password1 = parseInt(prompt("¿Cuál es tu contraseña?"));
-    if(intentos == 1){
-        alert("¡Ya no tienes intentos!")
-        break;
+// Funciones:
+const Dinero = () => {
+    let cantDinero = Number(prompt("¿Cuántas operaciones deseas hacer?"));
+    for (i = 1; i <= cantDinero; i++) {
+      let aporte = Number(prompt(`Importe N° ${i}`));
+      sumarIngresos = sumarIngresos + aporte;
     }
-
-    //Aquí no supe como hacer para cuando el usuario no digite los datos correctos sacarlo de la pagina :C
-}
-let consigna = prompt("¿Deseas calcular el promedio por edad de tus alumnos? (¿si o no?)");
-if (consigna == "si") {
-  let cantAlumnos = Number(prompt("¿Cuántos alumnos hay?"));
-  let edadAlumnos;
-  let suma = 0;
-  for (i = 1; i <= cantAlumnos; i++) {
-    edadAlumnos = Number(prompt("Edad del alumno número" + i + "."));
-    suma = suma + edadAlumnos;
-  }
-  alert("El promedio de edades de " + cantAlumnos + " alumnos es: " + suma / cantAlumnos);
-} else(alert("¡Adiós!"));
+    alert(`Total ingreso ${sumarIngresos}`);
+  };
+  
+  const Gastos = () => {
+    let cantGastos = Number(prompt("¿Cuántas operaciones deseas hacer?"));
+    for (i = 1; i <= cantGastos; i++) {
+      let gasto = Number(prompt(`Gasto N° ${i}`));
+      sumarGasto = sumarGasto + gasto;
+    }
+    alert(`total gasto ${sumarGasto}`);
+  };
+  
+  const restar = (num1, num2) => {
+    return Number(num1) - Number(num2);
+  };
+  
+  const sumar = (num1, num2) => {
+    return num1 + " " + num2;
+  };
+  
+  // Variables:
+  let sumarGasto = 0;
+  let sumarIngresos = 0;
+  let opcion;
+  
+  // Simulación:
+  alert("Bienvenidos a Info Ahorro");
+  let nombre = prompt("Ingrese su nombre");
+  let apellido = prompt("Ingrese su apellido");
+  info = sumar(nombre, apellido);
+  alert(`Hola, ${info} ¿Que operación deseas hacer?`);
+  do {
+    opcion = Number(prompt(`1: Ingresar Dinero, 2: Ingresar Gasto, 3: Nada`));
+    switch (opcion) {
+      case 1: {
+        Dinero();
+        let resultado = restar(sumarIngresos, sumarGasto);
+        alert(`Saldo actual ${resultado}`);
+        break;
+      }
+      case 2: {
+        Gastos();
+        let resultado = restar(sumarIngresos, sumarGasto);
+        alert(`Saldo actual ${resultado}`);
+        break;
+      }
+      case 3: {
+        alert("Adios!");
+      }
+    }
+  } while (opcion !== 3);
